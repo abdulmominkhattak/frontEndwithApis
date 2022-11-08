@@ -1,0 +1,23 @@
+body{
+    background-color: #EDE4E0!important;
+    font-family: 'Montserrat', sans-serif !important;
+}
+.mainSection{
+    margin: 50px 50px;
+    width: 90%;
+   
+    
+}
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+
+
+    text-align: center;
+}
+
+
+

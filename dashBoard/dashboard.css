@@ -1,0 +1,44 @@
+
+    body{
+        background-color: #EDE4E0!important;
+        font-family: 'Montserrat', sans-serif !important;
+        
+    }
+
+    nav.navbar{
+        background-color: #C8DBBE !important ;
+
+    }
+    
+    .mainSection{
+    margin: 50px 50px;
+    width: 90%;
+    border: 2px solid red;
+   
+    }
+   
+    .navigationSection{
+        text-align: center;
+    }
+
+    .navigationSection > .links{
+        padding: 20px;
+        width: 50%;
+        margin: auto    ;
+    }
+    .links >button{
+        margin: 10px;
+       
+    }
+
+    .footer {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+    
+ 
+        text-align: center;
+    }
+
+
