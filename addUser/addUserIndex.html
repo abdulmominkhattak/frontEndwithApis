@@ -25,21 +25,24 @@
         $('.addUserForm').submit(function(e)
         {
             e.preventDefault();
-            var user = {
-                'Name' : $("input[name = 'name']").val(),
-                'Gender' : $("input[name = 'gender']").val(),
-                "Email" : $("input[name = 'email']").val(),      
-                "Age" : $("input[name = 'Age']").val(),
-                "Department" : $("input[name = 'department']").val(),
+          
+            let user = {
+                Name : $("input[name = 'name']").val(),
+                Gender : $("input[name = 'gender']").val(),
+                Email: $("input[name = 'email']").val(),      
+                Age : $("input[name = 'Age']").val(),
+                Department : $("input[name = 'department']").val()
             }
+           
         
  
             $.ajax({
                 url : 'https://localhost:7208/api/user/adduser',
                 type : 'POST',
-                dataType : "json",
+                // dataType : "json",
+                contentType : "application/json; charset=utf-8",
                
-                data : user,
+                data : {'user':user},
                 success :function(user,textStatus,xhr){
                     console.log(user);
                 },
@@ -126,7 +129,7 @@
             <div class="input ">
                 <label style="padding-right: 55px ;"
                for="age">Age</label>
-                <input class = "form-control" type="text" name="Age" id="" required>
+                <input class = "form-control" type="number" name="Age" id="" required>
             </div>
             <div class="input ">
                 <label style="padding-right: 55px ;"
