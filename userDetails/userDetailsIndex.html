@@ -5,6 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../userDetails/userDetails.css">
+    <script src="https://code.jquery.com/jquery-3.6.1.js" 
+    integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" 
     integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" 
@@ -12,9 +15,49 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+
+    <script>
+        $(document).ready(function(){
+            $("#getUser").click(function(){
+                var mainHeading= $('.mainHeading');
+                var genderfield = $("h4:nth-child(2)");
+                var agefield = $("h4:nth-child(3)");
+                var emailField = $("h4:nth-child(4)");
+                var departmetnField = $("h4:nth-child(5)");
+
+
+                $.ajax({
+                    type : 'GET',
+                    url : 'https://localhost:7208/api/user/getUser',
+                    // dataType : JSON,
+
+                    success: function(data){ 
+                    
+                        mainHeading.replaceWith('<h3 >User Name: '+data.name+'</h3>' );
+                        genderfield.replaceWith('<h4 style ="text-align: center!important;" > Gender: '+data.gender+'</h4>') ;
+                        agefield.replaceWith('<h4 style ="text-align: center!important;" > Age: '+data.age+'</h4>') ;                        
+                        emailField.replaceWith('<h4 style ="text-align: center!important;" > Email: '+data.email+'</h4>') ;  
+                        departmetnField.replaceWith('<h4 style ="text-align: center!important;" > Depart'+data.department+'</h4>') ;  
+                    
+                    },             
+
+                  
+
+                });
+         
+
+                
+       
+            })
+         
+        });
+    </script>
+
+
     <title>User Details</title>
 </head>
 <body>
+    <button id="getUser">Get user</button>
 
     <section class="mainSection">
         <div class="subMainSection">
@@ -22,7 +65,7 @@
                 <div class="col-sm-3">
                     <div class="card  ">
                         <div class="card-header">
-                            <h2>User Name</h2>   
+                            <h2 class="mainHeading">User Name</h2>   
         
                         </div>
                         <div class="card-body">

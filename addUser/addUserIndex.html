@@ -27,11 +27,11 @@
             e.preventDefault();
           
             let user = {
-                Name : $("input[name = 'name']").val(),
-                Gender : $("input[name = 'gender']").val(),
-                Email: $("input[name = 'email']").val(),      
-                Age : $("input[name = 'Age']").val(),
-                Department : $("input[name = 'department']").val()
+                Name : $("input[name = 'name']").val().serialize(),
+                Gender : $("input[name = 'gender']").val().serialize(),
+                Email: $("input[name = 'email']").val().serialize(),      
+                Age : $("input[name = 'Age']").val().serialize(),
+                Department : $("input[name = 'department']").val().serialize()
             }
            
         
@@ -39,12 +39,12 @@
             $.ajax({
                 url : 'https://localhost:7208/api/user/adduser',
                 type : 'POST',
-                // dataType : "json",
-                contentType : "application/json; charset=utf-8",
+                dataType : "json",
+                contentType : "application/json; ",
                
-                data : {'user':user},
+                data : user,
                 success :function(user,textStatus,xhr){
-                    console.log(user);
+                    console.log(user)
                 },
 
                 error:function(xhr, textStatus, errorThrown)
@@ -106,7 +106,7 @@
 
     <div class="mainDiv form-group" >
         <h2 class="mainHeading">Add New User</h2>
-        <form method="POST" action="https://localhost:7208/api/user/adduser" class="addUserForm" enctype="application/x-www-form-urlencoded"  novalidate>
+        <form method="POST" action="https://localhost:7208/api/user/adduser" class="addUserForm" novalidate  >
             <div class="input">
               <label for="name">Name </label>
               <input class = "form-control" type="text" name="name" id="" required>
