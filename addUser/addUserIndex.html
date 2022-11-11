@@ -21,62 +21,50 @@
     <script type="text/javascript">
 
     $(document).ready(function() {
-        
-        $('.addUserForm').submit(function(e)
+
+    
+        $('.addUserForm').submit(function()
         {
-            e.preventDefault();
-          
-            let user = {
-                Name : $("input[name = 'name']").val().serialize(),
-                Gender : $("input[name = 'gender']").val().serialize(),
-                Email: $("input[name = 'email']").val().serialize(),      
-                Age : $("input[name = 'Age']").val().serialize(),
-                Department : $("input[name = 'department']").val().serialize()
-            }
-           
-        
- 
+            var thename = $("input[name = 'name']").val();
+        var thegender = $("input[name = 'gender']").val();
+        var theemail = $("input[name = 'email']").val();
+        var theage = $("input[name = 'age']").val();
+        var thedepartement = $("input[name = 'department']").val();
+
             $.ajax({
-                url : 'https://localhost:7208/api/user/adduser',
-                type : 'POST',
-                dataType : "json",
-                contentType : "application/json; ",
-               
-                data : user,
-                success :function(user,textStatus,xhr){
-                    console.log(user)
-                },
+            contentType: "application/json; charset=utf-8",
+            url: 'https://localhost:7208/api/user/adduser',
+             type: 'POST',
+             dataType: 'json',
+            data: JSON.stringify({ 
+                
+                
+                "Name" : thename,
+                "Gender" : thegender,
+                "Email": theemail,      
+                "Age ": theage,
+                "Department" : thedepartement
+        
+        
+            }),
+             beforeSend: function () {
+                
+            }, 
+            success: function (data) {
+                console.log(data)
+                alert("User Successfully Added");
+            }, complete: function () {
+                
+             }, error: function (data) {
+                        }
+            });
 
-                error:function(xhr, textStatus, errorThrown)
-                {
-                    console.log(user);
-                }
-            })
-        })
-
+        })      
+     
     })
 
-    // <script>
-    //      $(document).ready(function () {
-    //          $("#Save").click(function () {
-    //              var person = new Object();
-    //              person.name = $('#name').val();
-    //              person.surname = $('#surname').val();
-    //              $.ajax({
-    //                  url: 'http://localhost:3413/api/person',
-    //                  type: 'POST',
-    //                  dataType: 'json',
-    //                  data: person,
-    //                  success: function (data, textStatus, xhr) {
-    //                      console.log(data);
-    //                  },
-    //                  error: function (xhr, textStatus, errorThrown) {
-    //                      console.log('Error in Operation');
-    //                  }
-    //              });
-    //          });
-    //      });
-    // </script>
+
+    </script>
 
 
 
@@ -103,10 +91,10 @@
             </div>
           </nav>
     </header>
-
+    <!-- method="POST" action="https://localhost:7208/api/user/adduser"  for    attribute--> 
     <div class="mainDiv form-group" >
         <h2 class="mainHeading">Add New User</h2>
-        <form method="POST" action="https://localhost:7208/api/user/adduser" class="addUserForm" novalidate  >
+        <form  class="addUserForm" novalidate  > 
             <div class="input">
               <label for="name">Name </label>
               <input class = "form-control" type="text" name="name" id="" required>
@@ -114,7 +102,7 @@
            <div class="input" >
             <label style="padding-right: 55px ;"
            for="Gender">Gender</label>
-           <input type="radio" name="gender" id="" value="Male" > Male 
+           <input type="radio" name="gender" id="" value="Male"  checked> Male 
             <input type="radio" name="gender" id="" value="Female"> Female
             
             </div>
@@ -129,7 +117,7 @@
             <div class="input ">
                 <label style="padding-right: 55px ;"
                for="age">Age</label>
-                <input class = "form-control" type="number" name="Age" id="" required>
+                <input class = "form-control" type="number" name="age" id="idforage" required>
             </div>
             <div class="input ">
                 <label style="padding-right: 55px ;"
