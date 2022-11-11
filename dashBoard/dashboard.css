@@ -3,11 +3,16 @@
         background-color: #EDE4E0!important;
         font-family: 'Montserrat', sans-serif !important;
         
+        
     }
 
     nav.navbar{
         background-color: #C8DBBE !important ;
 
+    }
+    a{
+        color: black !important;
+        font-weight: 900 !important;
     }
     
     .mainSection{
@@ -26,8 +31,10 @@
         width: 50%;
         margin: auto    ;
     }
-    .links >button{
-        margin: 10px;
+    .links >a >button{
+        
+        margin:10px 10px 30px 10px;
+       
        
     }
 

@@ -18,7 +18,7 @@
 
     <script>
 
-function getParameterByName(name, url = window.location.href) { //this function retrieve the value from URL 
+function getParameterByName(name, url = window.location.href) { //this function retrieve the value of id from URL 
     name = name.replace(/[\[\]]/g, '\\$&');
     var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
         results = regex.exec(url);
@@ -38,7 +38,7 @@ function getParameterByName(name, url = window.location.href) { //this function 
 
                 $.ajax({
                     type : 'GET',
-                    url : 'https://localhost:7208/api/user/getUser' + '/'+getParameterByName("id"),
+                    url : 'https://localhost:7208/api/user/getUser' + '/'+getParameterByName("id"), //passing paramenter id to the function that will retrieve from URL
                     // dataType : JSON,
 
                     success: function(data){ 

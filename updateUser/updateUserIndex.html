@@ -20,7 +20,17 @@
 
     <script type="text/javascript">
 
+function getParameterByName(name, url = window.location.href) { //this function retrieve the value of id from URL 
+    name = name.replace(/[\[\]]/g, '\\$&');
+    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, ' '));
+}
+
     $(document).ready(function() {
+        $(".mainHeading").append(getParameterByName("id"));
 
     
         $('.addUserForm').submit(function()
@@ -30,11 +40,12 @@
         var theemail = $("input[name = 'email']").val();
         var theage = $("input[name = 'age']").val();
         var thedepartement = $("input[name = 'department']").val();
+       
 
             $.ajax({
             contentType: "application/json; charset=utf-8",
-            url: 'https://localhost:7208/api/user/adduser',
-             type: 'POST',
+            url: 'https://localhost:7208/api/user/updateUser'+'/'+getParameterByName("id"),
+             type: 'PUT',
              dataType: 'json',
             data: JSON.stringify({ 
                 
@@ -59,7 +70,7 @@
                         }
             });
 
-            alert("User Successfully Added");
+            alert("Updated Successfully Added");
 
         })      
      
@@ -95,8 +106,8 @@
     </header>
     <!-- method="POST" action="https://localhost:7208/api/user/adduser"  for    attribute--> 
     <div class="mainDiv form-group" >
-        <h2 class="mainHeading">Add New User</h2>
-        <form  class="addUserForm"   > 
+        <h2 class="mainHeading">Update User: </h2>
+        <form  class="addUserForm"  > 
             <div class="input">
               <label for="name">Name </label>
               <input class = "form-control" type="text" name="name" id="" required>
@@ -130,7 +141,7 @@
 
 
             <div id="loginBtn" >
-                <input class="btn btn-primary btn-dark theButton " type="submit" value="Add User" >
+                <input class="btn btn-primary btn-dark theButton " type="submit" value="Update User" >
             </div>
          
         </form>
