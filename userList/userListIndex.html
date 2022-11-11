@@ -19,9 +19,8 @@
     <script>
 
 $(document).ready(function(){
-            $("#getallUser").click(function(){
-               
-                $.ajax({
+
+    $.ajax({
                     type : 'GET',
                     url : 'https://localhost:7208/api/user/getAllUser',
                     // dataType : JSON,
@@ -29,9 +28,15 @@ $(document).ready(function(){
                     success: function(data){ 
                         $.each(data,function(index,val)
                         {
-                            console.log(val.id);
-                            
-                        })                                           
+                            $('.toAppend').append(' <div class="col-lg-3 col-md-6"> ' 
+                                + '<div class="card"> <div class="card-header"> <h4>User Name: '+ val.name+' </h4> </div> <div> <img class="card-img-top"' +
+                                    'src="userImage.png" alt="userImage"></div> <div class="card-footer text-center">  <a href="../userDetails/userDetailsIndex.html?id='+val.id+'"><button class="btn btn-primary">'+
+                                        'View</button></a> <button class="btn btn-primary">Edit </button> <button class="btn btn-primary btn-danger">Delete</button>'+
+                                        ' </div> </div> ')
+                                        localStorage.setItem("idOfUser",val.id);                           
+                        })             
+                        
+                     
                       
                     
                     },             
@@ -40,10 +45,10 @@ $(document).ready(function(){
 
                 });
          
+    
 
-                
-       
-            })
+
+            
          
         });
 
@@ -73,7 +78,7 @@ $(document).ready(function(){
         </div>
       </nav>
 </header>
-<button id="getallUser">Get All Users</button>
+<!-- <button id="getallUser">Get All Users</button> -->
 
     <section class="mainSection">
         <h3>
@@ -81,26 +86,13 @@ $(document).ready(function(){
         </h3>
         <br>
         <br>
+         
+  
 
         
-        <div class="card-deck row">
-            <div class="col-lg-3 col-md-6">
-                <div class="card">
-                    <div class="card-header">
-                        <h3>User Name</h3>    
-                    </div>
-                    <div>
-                        <img class="card-img-top" src="userImage.png" alt="userImage">
-                    </div>
-                            
-                    <div class="card-footer text-center">
-                        <button class="btn btn-primary">View</button>
-                        <button class="btn btn-primary">Edit </button>   
-                        <button class="btn btn-primary btn-danger">Delete</button>
-        
-                    </div>
-        
-                </div>
+        <div class="card-deck row toAppend">
+            <a href="../userDetails/userDetailsIndex.html"></a>
+            
         
         </div>
     

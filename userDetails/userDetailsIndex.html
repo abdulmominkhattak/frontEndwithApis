@@ -17,9 +17,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
 
     <script>
+
+function getParameterByName(name, url = window.location.href) { //this function retrieve the value from URL 
+    name = name.replace(/[\[\]]/g, '\\$&');
+    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, ' '));
+}
         $(document).ready(function(){
-            $("#getUser").click(function(){
-                var mainHeading= $('.mainHeading');
+            
+
+            var mainHeading= $('.mainHeading');
                 var genderfield = $("h4:nth-child(2)");
                 var agefield = $("h4:nth-child(3)");
                 var emailField = $("h4:nth-child(4)");
@@ -28,7 +38,7 @@
 
                 $.ajax({
                     type : 'GET',
-                    url : 'https://localhost:7208/api/user/getUser',
+                    url : 'https://localhost:7208/api/user/getUser' + '/'+getParameterByName("id"),
                     // dataType : JSON,
 
                     success: function(data){ 
@@ -37,19 +47,14 @@
                         genderfield.replaceWith('<h4 style ="text-align: center!important;" > Gender: '+data.gender+'</h4>') ;
                         agefield.replaceWith('<h4 style ="text-align: center!important;" > Age: '+data.age+'</h4>') ;                        
                         emailField.replaceWith('<h4 style ="text-align: center!important;" > Email: '+data.email+'</h4>') ;  
-                        departmetnField.replaceWith('<h4 style ="text-align: center!important;" > Depart'+data.department+'</h4>') ;  
+                        departmetnField.replaceWith('<h4 style ="text-align: center!important;" > Depart: '+data.department+'</h4>') ;  
                     
                     },             
 
                   
 
                 });
-         
-
-                
-       
-            })
-         
+            
         });
     </script>
 
@@ -57,7 +62,7 @@
     <title>User Details</title>
 </head>
 <body>
-    <button id="getUser">Get user</button>
+    <!-- <button id="getUser">Get user</button> -->
 
     <section class="mainSection">
         <div class="subMainSection">
